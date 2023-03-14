@@ -110,11 +110,26 @@ class Micron(LengthUnit):
 
     def convert_error_from_standard(self, error):
         return error * 1000000.
+    
+################ Edit by jyz #####################################
+class Millimeter(LengthUnit):
+    def convert_value_to_standard(self, value):
+        return value / 1000.
+
+    def convert_value_from_standard(self, value):
+        return value * 1000.
+
+    def convert_error_to_standard(self, error):
+        return error / 1000.
+
+    def convert_error_from_standard(self, error):
+        return error * 1000.
 
 
 units_dict = {R('(m(eter(s)?)?(?!ile(s)?))|(Meter(s)?(?!ile(s)?))', group=0): Meter,
               R('[Mm]ile[s]?', group=0): Mile,
               R('[ÅÅ]', group=0): Angstrom,
-              R('[M|m]icron', group=0): Micron}
+              R('[M|m]icron', group=0): Micron,
+              R('([Mm]illimeter)|mm'): Millimeter}
 Length.units_dict = units_dict
 Length.standard_units = Meter()
