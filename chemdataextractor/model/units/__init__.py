@@ -26,3 +26,6 @@ from .substance_amount import *
 from .temperature import *
 from .time import *
 from .unit import *
+
+# modified by jyz
+from .electrocaloric_strength import *
