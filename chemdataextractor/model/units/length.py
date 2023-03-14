@@ -130,6 +130,6 @@ units_dict = {R('(m(eter(s)?)?(?!ile(s)?))|(Meter(s)?(?!ile(s)?))', group=0): Me
               R('[Mm]ile[s]?', group=0): Mile,
               R('[ÅÅ]', group=0): Angstrom,
               R('[M|m]icron', group=0): Micron,
-              R('([Mm]illimeter)|mm'): Millimeter}
+              R('([Mm]illimeter)|mm', group=0): Millimeter}
 Length.units_dict = units_dict
 Length.standard_units = Meter()
