@@ -1,0 +1,55 @@
+# created by jyz
+# -*- coding: utf-8 -*-
+"""
+Units and models for electric field strength.
+
+"""
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+import logging
+
+from .quantity_model import QuantityModel, StringType
+from .unit import Unit
+from .dimension import Dimension
+from .temperature import Temperature
+from .length import Length
+from .electric_potential import ElectricPotential
+from ...parse.elements import W, I, R, Optional, Any, OneOrMore, Not, ZeroOrMore
+from ...parse.actions import merge, join
+
+log = logging.getLogger(__name__)
+
+class ElectricFieldStrength(Dimension):
+    constituent_dimensions = ElectricPotential() / Length()
+
+class ElectricFieldStrengthModel(QuantityModel):
+    dimensions = ElectricFieldStrength
+
+class ElectricFieldStrengthUnit(Unit):
+    
+    def __init__(self, dimensions, magnitude=0.0, powers=None):
+        super(ElectricFieldStrengthUnit, self).__init__(ElectricFieldStrength(), magnitude, powers)
+
+
+class EFS(ElectricFieldStrengthUnit):
+        
+    def convert_value_to_standard(self, value):
+        return value
+
+    def convert_value_from_standard(self, value):
+        return value
+
+    def convert_error_to_standard(self, error):
+        return error
+
+    def convert_error_from_standard(self, error):
+        return error
+    
+
+units_dict =  { R("(mV\/m|V\/m|kV\/m|mV\/cm|mV\/mm|V\/cm|V\/mm|kV\/cm|kV\/mm)?", group=0): EFS}
+ElectricFieldStrength.units_dict.update(units_dict)
+ElectricFieldStrength.standard_units = EFS()
